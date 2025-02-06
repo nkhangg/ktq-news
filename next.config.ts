@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
             static: 30,
         },
     },
+    staticPageGenerationTimeout: 1000,
+    // pageExtensions: ['page.tsx', 'page.ts'],
 };
 
 export default nextConfig;
