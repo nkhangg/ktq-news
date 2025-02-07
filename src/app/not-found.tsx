@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { Footer, Header } from '@/components/common';
 import { Button } from '@/components/ui/button';
 import Routes from '@/ultils/routes';
