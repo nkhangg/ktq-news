@@ -20,7 +20,7 @@ export default function PostContactSession({ data }: IPostContactSessionProps) {
             params: {
                 limit: 4,
                 category: data.category.slug,
-                ignore: data._id,
+                ignore: data.id,
             },
         });
 
@@ -47,7 +47,7 @@ export default function PostContactSession({ data }: IPostContactSessionProps) {
 
                     <div className="mt-5 flex flex-col gap-4">
                         {posts.map((item) => {
-                            return <ContactPost key={item._id} data={item} />;
+                            return <ContactPost key={item.id} data={item} />;
                         })}
                     </div>
                 </div>

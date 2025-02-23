@@ -27,7 +27,7 @@ export default function SearchHeader() {
             },
         });
 
-        if (data) setSearchHistories(data);
+        if (data && data?.data) setSearchHistories(data.data);
     };
 
     const getSearchSuggests = useCallback(async () => {
@@ -39,7 +39,7 @@ export default function SearchHeader() {
             return;
         }
         const { data } = await axios({
-            url: 'posts/search',
+            url: 'posts',
             params: {
                 search: value,
             },
@@ -91,8 +91,8 @@ export default function SearchHeader() {
                                         <ul className="flex flex-col gap-2">
                                             {searchSuggests.map((post) => {
                                                 return (
-                                                    <li className="" key={post._id}>
-                                                        <SearchItem data={post} />
+                                                    <li className="" key={post.id}>
+                                                        <SearchItem onClicked={() => setOpen(false)} data={post} />
                                                     </li>
                                                 );
                                             })}
@@ -114,7 +114,7 @@ export default function SearchHeader() {
                                 <ul className="flex flex-col gap-2">
                                     {searchHistories.map((item) => {
                                         return (
-                                            <li className="" key={item._id}>
+                                            <li className="" key={item.id}>
                                                 <SearchItem onClicked={() => setOpen(false)} data={item.post} />
                                             </li>
                                         );

@@ -17,7 +17,7 @@ export default async function CategoriesTopic() {
                     <Suspense fallback={<Loading />}>
                         {data.map((item) => {
                             return (
-                                <Link href={Routes.GENERATE_CATEGORY_URL(item)} key={item._id}>
+                                <Link href={Routes.GENERATE_CATEGORY_URL(item)} key={item.id}>
                                     <Button variant={'outline'} size={'sm'} className="rounded-full">
                                         {item.name} {item.post_count ? `(${item.post_count})` : ''}
                                     </Button>

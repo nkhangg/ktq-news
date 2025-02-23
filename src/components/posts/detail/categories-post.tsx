@@ -9,9 +9,9 @@ export interface ICategoriesPostProps {
 }
 
 async function getData(post: IPost) {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/categories/outstanding/?limit=10&ignore=${post.category._id}`, {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/categories/outstanding/?limit=10&ignore=${post.category.id}`, {
         cache: 'force-cache',
-        next: { tags: [`categories/outstanding_limit=10_ignore=${post.category._id}`], revalidate: 300 },
+        next: { tags: [`categories/outstanding_limit=10_ignore=${post.category.id}`], revalidate: 300 },
     });
 
     return await data.json();
@@ -20,6 +20,7 @@ async function getData(post: IPost) {
 export default async function CategoriesPost({ data }: ICategoriesPostProps) {
     const result: ICategory[] = (await getData(data)) || [];
 
+    console.log(result);
     return (
         <div className=" mt-4">
             <div>
@@ -27,9 +28,9 @@ export default async function CategoriesPost({ data }: ICategoriesPostProps) {
 
                 <div className="mt-2 flex flex-wrap gap-2">
                     <Suspense fallback={<Loading />}>
-                        {result.map((item) => {
+                        {(result || []).map((item) => {
                             return (
-                                <Link href={Routes.GENERATE_CATEGORY_URL(item)} key={item._id}>
+                                <Link href={Routes.GENERATE_CATEGORY_URL(item)} key={item.id}>
                                     <Button variant={'outline'} size={'sm'} className="rounded-full">
                                         {item.name} {item.post_count ? `(${item.post_count})` : ''}
                                     </Button>

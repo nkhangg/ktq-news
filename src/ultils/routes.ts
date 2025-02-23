@@ -18,11 +18,11 @@ export default class Routes {
     }
 
     public static GENERATE_POST_URL(post: IPost) {
-        return `${this.POSTS}/${post._id}/${post.slug}/${post.title.replaceAll(' ', '-')}`;
+        return `${this.POSTS}/${post.slug}/${post.title.replaceAll(' ', '-')}`;
     }
 
     public static GENERATE_ADMIN_POST_URL(post: IPost) {
-        return `/admin/${this.POSTS}/${post._id}`;
+        return `/admin/${this.POSTS}/${post.id}`;
     }
 
     public static MENUS = [

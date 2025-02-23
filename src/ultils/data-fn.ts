@@ -1,7 +1,5 @@
 import Constant from '@/constants';
-import { getCache, setCache } from '@/lib/cache-service';
-import connectDB from '@/lib/mongoose';
-import { ConfigModel } from '@/models/configs';
+import { notFound } from 'next/navigation';
 
 const isBuildTime = typeof window === 'undefined';
 
@@ -10,40 +8,101 @@ export const generateBaseUrl = () => {
 };
 
 export const getContactData = async () => {
-    try {
-        await connectDB();
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configs/contact-data`, { cache: 'force-cache', next: { revalidate: 500 } });
 
-        const cacheKey = 'configs/contact-data';
+    const result = await data.json();
 
-        const cacheData = await getCache(cacheKey);
-
-        if (cacheData) {
-            return JSON.parse(cacheData.value);
-        }
-
-        const configs: IConfig[] = await ConfigModel.find({
-            key: { $in: [Constant.PRIMARY_EMAIL_KEY, Constant.CONTACT_EMAIL_KEY] },
-        });
-
-        await setCache(cacheKey, JSON.stringify(configs), 500);
-
-        return configs;
-    } catch (error) {
-        console.log(error);
-        return [];
-    }
+    return result?.data || [];
 };
 
 export async function getSliders() {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/sliders`, { cache: 'force-cache', next: { revalidate: 500 } });
-    return await data.json();
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/commons/sliders`, { cache: 'force-cache', next: { revalidate: 500 } });
+
+    const result = await data.json();
+
+    return result?.data || { post_count: 0, category_count: 0 };
 }
 
 export async function getCategoriesTopic() {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/categories/outstanding/?limit=10`, {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/commons/categories/outstanding`, {
         cache: 'force-cache',
-        next: { tags: ['categories/outstanding_limit=10'], revalidate: 300 },
+        next: { tags: ['categories/outstanding_limit=20'], revalidate: 300 },
     });
 
-    return await data.json();
+    const result = await data.json();
+
+    return result?.data || [];
 }
+
+export async function getCategories() {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/categories?limit=20`, { cache: 'force-cache', next: { revalidate: 300, tags: ['categories?limit=20'] } });
+
+    const result = await data.json();
+
+    return result?.data || [];
+}
+
+export async function getFooterData() {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configs/footer-data`, { cache: 'force-cache', next: { tags: [Constant.FOOTER_DATA_KEY] } });
+
+    const result = await data.json();
+
+    return result?.data || [];
+}
+
+export const getData = async (slug: IPost['slug']) => {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/posts/${slug}`);
+
+    if (data.status != 200) {
+        notFound();
+    }
+
+    const result = await data.json();
+
+    if (!result?.data) {
+        notFound();
+    }
+
+    return result?.data;
+};
+
+export const getHomeData = async () => {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/commons/home-data`);
+
+    if (data.status != 200) {
+        notFound();
+    }
+
+    const result = await data.json();
+
+    if (!result?.data) {
+        notFound();
+    }
+
+    return result?.data;
+};
+
+export const getTags = async () => {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/tags?limit=20`, { cache: 'force-cache', next: { tags: ['tags?limit=20'], revalidate: 300 } });
+
+    const result = await data.json();
+
+    if (!result?.data) {
+        notFound();
+    }
+
+    return result?.data;
+};
+
+export const getMetadata = async (slug: IPost['slug']) => {
+    try {
+        const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/posts/metadata/${slug}`);
+
+        const result = await data.json();
+
+        return result?.data;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+        return null;
+    }
+};

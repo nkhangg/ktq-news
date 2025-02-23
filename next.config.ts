@@ -9,16 +9,7 @@ const nextConfig: NextConfig = {
     },
     staticPageGenerationTimeout: 1000,
     output: 'standalone',
-    async redirects() {
-        return [
-            {
-                source: '/admin/login',
-                has: [{ type: 'host', value: 'prerender' }],
-                destination: '/',
-                permanent: false,
-            },
-        ];
-    },
+
     // pageExtensions: ['page.tsx', 'page.ts'],
 };
 

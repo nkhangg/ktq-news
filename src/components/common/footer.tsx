@@ -1,20 +1,15 @@
 import Constant from '@/constants';
+import { getFooterData } from '@/ultils/data-fn';
 import { LucideProps } from 'lucide-react';
 import Link from 'next/link';
 import { ForwardRefExoticComponent, Fragment, RefAttributes } from 'react';
 import { Button } from '../ui/button';
 import Logo from './logo';
 
-async function getFooterData() {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/configs/footer-data`, { cache: 'force-cache', next: { tags: [Constant.FOOTER_DATA_KEY] } });
-
-    return await data.json();
-}
-
 export default async function Footer() {
     const configs: IConfig[] = await getFooterData();
 
-    const footerData = (Constant.getFooterData(configs)?.value as Record<string, string | []>[]) || [];
+    const footerData = (JSON.parse((Constant.getFooterData(configs)?.value as string) || '') as Record<string, string | []>[]) || [];
 
     const primaryEmail = (Constant.getPrimaryEmail(configs)?.value as string) || '';
 

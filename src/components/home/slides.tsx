@@ -14,6 +14,7 @@ const dancing = Dancing_Script({
 
 export default async function Slides() {
     const data: { post_count: number; category_count: number } = await getSliders();
+
     return (
         <Suspense>
             <div className="grid grid-cols-1 md:grid-cols-12 md:h-[500px] gap-5">

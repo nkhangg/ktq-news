@@ -20,16 +20,55 @@ export default function PostsSession() {
     const searchParams = useSearchParams();
 
     const getPosts = useCallback(async () => {
+        const newParams = Object.keys(params).reduce((prev, cur) => {
+            if (cur === 'category') {
+            }
+
+            switch (cur) {
+                case 'category': {
+                    prev['filter.category.slug'] = params[cur];
+                    break;
+                }
+                case 'ttr': {
+                    prev['filter.ttr'] = params[cur] == -1 ? `$lte:300` : `$gt:300`;
+                    break;
+                }
+                case 'tags': {
+                    prev['filter.tags.slug'] = params[cur];
+                    break;
+                }
+                case 'sortBy': {
+                    prev[cur] = params[cur] == -1 ? `updated_at:ASC` : `updated_at:DESC`;
+                    break;
+                }
+                default: {
+                    prev[cur] = params[cur];
+                }
+            }
+
+            return prev;
+        }, {});
+
         setLoading(true);
-        const { data } = await axios({
-            url: 'posts',
-            method: 'GET',
-            params,
-        });
+        try {
+            const { data } = await axios({
+                url: 'posts',
+                method: 'GET',
+                params: {
+                    ...newParams,
+                    limit: 10,
+                },
+            });
 
-        setLoading(false);
+            setLoading(false);
 
-        setData(data);
+            setData(data);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (error) {
+            setData(null);
+        } finally {
+            setLoading(false);
+        }
     }, [params]);
 
     useEffect(() => {
@@ -67,12 +106,6 @@ export default function PostsSession() {
         setParams(params);
     }, [searchParams]);
 
-    useEffect(() => {
-        if (!data) return;
-
-        const pagination = createPagination(99, 100);
-        console.log(pagination);
-    }, [data]);
     return (
         <>
             {loading ? (
@@ -89,7 +122,7 @@ export default function PostsSession() {
                 <div>
                     <div className="flex flex-col gap-4">
                         {data.data.map((item) => {
-                            return <Post data={item} key={item._id} />;
+                            return <Post data={item} key={item.id} />;
                         })}
                     </div>
 

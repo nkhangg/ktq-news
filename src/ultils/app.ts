@@ -1,6 +1,6 @@
 import axios from 'axios';
-import Routes from './routes';
 import fs from 'fs';
+import Routes from './routes';
 
 export function copyToClipboard(text: string, onSuccess?: () => void): void {
     if (!navigator.clipboard) {
@@ -42,7 +42,7 @@ export const handleClearFilterChange = () => {
 };
 
 export const generateCoppyLink = (data: IPost) => {
-    return `${window.location.origin}${Routes.POSTS}/${data._id}`;
+    return `${window.location.origin}${Routes.POSTS}/${data.id}`;
 };
 
 export const isValidUrl = (url: string) => {

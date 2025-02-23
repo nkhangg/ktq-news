@@ -26,10 +26,10 @@ export default function AuthorSession(props: { data: IPost }) {
                 </Avatar>
 
                 <div className="">
-                    <span className="font-medium">{data.user.fullname || ''}</span>
+                    <span className="font-medium">{data.admin.fullname || ''}</span>
 
                     <div className="flex items-center gap-[2px] text-sm">
-                        <span>{moment(data.createdAt).fromNow()}</span>
+                        <span>{moment(data.created_at).fromNow()}</span>
                         <span>
                             <Dot />
                         </span>

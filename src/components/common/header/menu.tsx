@@ -3,11 +3,7 @@ import Logo from '../logo';
 import Routes from '@/ultils/routes';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-
-async function getCategories() {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/categories`, { cache: 'force-cache', next: { revalidate: 300 } });
-    return await data.json();
-}
+import { getCategories } from '@/ultils/data-fn';
 
 export default async function Menu() {
     const data: ICategory[] = (await getCategories()) || [];
@@ -42,7 +38,7 @@ export default async function Menu() {
                     <ul className="flex flex-wrap gap-3 mt-4 items-center">
                         {data.map((item) => {
                             return (
-                                <li key={item._id}>
+                                <li key={item.id}>
                                     <Link href={Routes.GENERATE_CATEGORY_URL(item)}>
                                         <Button variant={'outline'} size={'sm'}>
                                             {item.name}

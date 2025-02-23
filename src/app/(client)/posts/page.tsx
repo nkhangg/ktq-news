@@ -2,7 +2,8 @@ import Breadcrumb from '@/components/breadcrumb';
 import FilterSession from '@/components/posts/filter-session';
 import PostsSession from '@/components/posts/posts-session';
 import { Suspense } from 'react';
-export default function Posts() {
+
+export default async function Posts() {
     return (
         <div>
             <Breadcrumb

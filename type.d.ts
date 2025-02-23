@@ -4,38 +4,45 @@ declare global {
     }
 }
 
+interface ITimestamp {
+    created_at: string;
+    updated_at: string;
+}
+
 interface IModel {
     _id: string;
     createdAt?: Date;
     updatedAt?: Date;
 }
 
-interface IPost extends IModel {
+interface IPost extends ITimestamp {
+    id: number;
     thumbnail: string;
     slug: string;
     title: string;
     content: string;
     preview_content: string;
     like_count: number;
-    user: IUser;
+    admin: IUser;
     category: ICategory;
     ttr: number;
+    tags: ITag[];
 }
 
-interface IUser extends IModel {
+interface IUser extends ITimestamp {
+    id: number;
     username: string;
-    password: string;
     fullname: string;
     email: string;
-    role: 'admin' | 'client';
 }
 
 type ICategory = {
+    id: number;
     name: string;
     description: string;
     slug: string;
     post_count?: number;
-} & IModel;
+} & ITimestamp;
 
 interface IHistory extends IModel {
     ip_client: string;
@@ -43,7 +50,7 @@ interface IHistory extends IModel {
 }
 
 interface IConfig extends IModel {
-    key: string;
+    key_name: string;
     value: unknown;
 }
 
@@ -64,7 +71,8 @@ interface ILike extends IModel {
     action: 'like' | 'unlike';
 }
 
-interface ISearchHistory extends IModel {
+interface ISearchHistory extends ITimestamp {
+    id: number;
     post: IPost;
     search_count: number;
 }
@@ -103,4 +111,10 @@ interface ICLoudData {
     overwritten: boolean;
     original_filename: string;
     api_key: string;
+}
+
+interface ITag {
+    id: number;
+    name: string;
+    slug: string;
 }

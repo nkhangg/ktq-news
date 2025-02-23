@@ -12,7 +12,7 @@ export default function SearchItem({ data, onClicked }: ISearchItemProps) {
     const updateSearchCount = async () => {
         await axios({
             url: 'search-histories',
-            data: { post_id: data._id },
+            data: { post_id: data.id },
             method: 'POST',
         });
     };
