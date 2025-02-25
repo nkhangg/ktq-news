@@ -9,7 +9,9 @@ const nextConfig: NextConfig = {
     },
     staticPageGenerationTimeout: 1000,
     output: 'standalone',
-
+    images: {
+        unoptimized: false,
+    },
     // pageExtensions: ['page.tsx', 'page.ts'],
 };
 

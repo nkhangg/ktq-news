@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import Constant from '@/constants';
 import { cn } from '@/lib/utils';
-import { getSliders } from '@/ultils/data-fn';
+import { getSliders, getStaticData } from '@/ultils/data-fn';
 import Routes from '@/ultils/routes';
 import { ArrowRightIcon, ArrowUpRight } from 'lucide-react';
 import moment from 'moment';
@@ -13,6 +13,7 @@ const dancing = Dancing_Script({
 });
 
 export default async function Slides() {
+    const staticData = await getStaticData();
     const data: { post_count: number; category_count: number } = await getSliders();
 
     return (
@@ -20,7 +21,7 @@ export default async function Slides() {
             <div className="grid grid-cols-1 md:grid-cols-12 md:h-[500px] gap-5">
                 <div
                     style={{
-                        backgroundImage: `url('/slide-1.jpg')`,
+                        backgroundImage: `url('${staticData.images['slide-image-1']}')`,
                     }}
                     className="h-[240px] md:h-full md:col-span-8 relative bg-no-repeat bg-center bg-cover transition-all rounded-xl shadow-xl p-5 flex flex-col justify-between"
                 >
@@ -34,7 +35,7 @@ export default async function Slides() {
                                 [dancing.className]: true,
                             })}
                         >
-                            {Constant.DESCRIPTION}
+                            {staticData.description || Constant.DESCRIPTION}
                         </div>
                     </div>
                     <div className="flex items-center justify-end">
@@ -48,7 +49,7 @@ export default async function Slides() {
                 <div className=" md:col-span-4 flex flex-col gap-5">
                     <div
                         style={{
-                            backgroundImage: `url('/slide-3.jpg')`,
+                            backgroundImage: `url('${staticData.images['slide-image-3']}')`,
                         }}
                         className="w-full h-[240px] md:h-full bg-no-repeat bg-bottom bg-cover  border rounded-xl shadow-xl p-4 flex flex-col items-end justify-between "
                     >
@@ -65,7 +66,7 @@ export default async function Slides() {
                     </div>
                     <div
                         style={{
-                            backgroundImage: `url('/slide-2.jpg')`,
+                            backgroundImage: `url('${staticData.images['slide-image-2']}')`,
                         }}
                         className="w-full  h-[240px] md:h-full bg-no-repeat bg-bottom bg-cover  border rounded-xl shadow-xl p-4 flex flex-col items-end justify-between "
                     >

@@ -3,7 +3,7 @@ import Constant from '@/constants';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Trang chủ | Ktq News',
+    title: `Trang chủ | ${process.env.LOGO_NAME}`,
     description: Constant.DESCRIPTION,
 };
 

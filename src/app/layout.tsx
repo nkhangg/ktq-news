@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: 'KTQ News',
+    title: `${process.env.LOGO_NAME}`,
     description: Constant.DESCRIPTION,
 };
 

@@ -23,6 +23,18 @@ export async function getSliders() {
     return result?.data || { post_count: 0, category_count: 0 };
 }
 
+export async function getStaticData() {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configs/static-sliders-data`, { cache: 'force-cache', next: { tags: ['configs/static-sliders-data'] } });
+
+    const result = await data.json();
+
+    if (result?.data && result?.data.value) {
+        return JSON.parse(result?.data?.value);
+    }
+
+    return result?.data;
+}
+
 export async function getCategoriesTopic() {
     const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/commons/categories/outstanding`, {
         cache: 'force-cache',

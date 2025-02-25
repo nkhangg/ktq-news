@@ -17,8 +17,8 @@ export async function generateMetadata({ params }) {
     const data = await getMetadata(slug);
 
     return {
-        title: data && data?.title ? data.title + ' | KTQ News' : ` ${decodeURIComponent(title).replaceAll('-', ' ')} | KTQ News`,
-        description: Constant.DESCRIPTION,
+        title: data && data?.title ? data.title + ` | ${process.env.LOGO_NAME}` : ` ${decodeURIComponent(title).replaceAll('-', ' ')} | ${process.env.LOGO_NAME}`,
+        description: data && data?.preview_content ? data?.preview_content : Constant.DESCRIPTION,
     };
 }
 

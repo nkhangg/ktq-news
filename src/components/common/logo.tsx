@@ -1,4 +1,3 @@
-'use client';
 import { cn } from '@/lib/utils';
 import Routes from '@/ultils/routes';
 import { Exo_2 } from 'next/font/google';
@@ -17,7 +16,7 @@ export default function Logo({ dark = false, admin = false }: { dark?: boolean; 
                     ['text-white']: dark,
                 })}
             >
-                KTQ news
+                {process.env.LOGO_NAME}
             </span>
         </Link>
     );
