@@ -21,7 +21,7 @@ export default async function Slides() {
             <div className="grid grid-cols-1 md:grid-cols-12 md:h-[500px] gap-5">
                 <div
                     style={{
-                        backgroundImage: `url('${staticData.images['slide-image-1']}')`,
+                        backgroundImage: `url('${staticData?.images['slide-image-1'] || ''}')`,
                     }}
                     className="h-[240px] md:h-full md:col-span-8 relative bg-no-repeat bg-center bg-cover transition-all rounded-xl shadow-xl p-5 flex flex-col justify-between"
                 >
@@ -35,7 +35,7 @@ export default async function Slides() {
                                 [dancing.className]: true,
                             })}
                         >
-                            {staticData.description || Constant.DESCRIPTION}
+                            {staticData?.description || Constant.DESCRIPTION}
                         </div>
                     </div>
                     <div className="flex items-center justify-end">
@@ -49,7 +49,7 @@ export default async function Slides() {
                 <div className=" md:col-span-4 flex flex-col gap-5">
                     <div
                         style={{
-                            backgroundImage: `url('${staticData.images['slide-image-3']}')`,
+                            backgroundImage: `url('${staticData?.images['slide-image-3'] || ''}')`,
                         }}
                         className="w-full h-[240px] md:h-full bg-no-repeat bg-bottom bg-cover  border rounded-xl shadow-xl p-4 flex flex-col items-end justify-between "
                     >
@@ -66,7 +66,7 @@ export default async function Slides() {
                     </div>
                     <div
                         style={{
-                            backgroundImage: `url('${staticData.images['slide-image-2']}')`,
+                            backgroundImage: `url('${staticData?.images['slide-image-2'] || ''}')`,
                         }}
                         className="w-full  h-[240px] md:h-full bg-no-repeat bg-bottom bg-cover  border rounded-xl shadow-xl p-4 flex flex-col items-end justify-between "
                     >

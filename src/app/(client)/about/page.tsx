@@ -45,14 +45,19 @@ export default async function About() {
 
                 <div className="hidden md:flex items-center justify-center">
                     <div className="relative md:h-full lg:h-[600px] md:w-[90%] lg:w-3/4 rounded-lg overflow-hidden shadow-lg">
-                        <img loading="lazy" className="object-cover w-full h-full" src={staticData.images['about-image-1']} alt={staticData.images['about-image-1']} />
+                        <img
+                            loading="lazy"
+                            className="object-cover w-full h-full"
+                            src={staticData?.images['about-image-1'] || ''}
+                            alt={staticData?.images['about-image-1'] || ''}
+                        />
                     </div>
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-5 md:mt-20">
                 <div className="hidden md:flex items-center justify-center ">
                     <div className="relative md:h-full lg:h-[600px] md:w-[90%] lg:w-3/4 rounded-lg overflow-hidden shadow-lg">
-                        <img className="object-cover w-full h-full" src={staticData.images['about-image-2']} alt={staticData.images['about-image-2']} />
+                        <img className="object-cover w-full h-full" src={staticData?.images['about-image-2'] || ''} alt={staticData?.images['about-image-2'] || ''} />
                     </div>
                 </div>
                 <div className="flex flex-col justify-between h-full gap-5 ">
