@@ -8,7 +8,7 @@ export const generateBaseUrl = () => {
 };
 
 export const getContactData = async () => {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configs/contact-data`, { cache: 'force-cache', next: { revalidate: 500 } });
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configs/contact-data`, { cache: 'no-cache', next: { revalidate: 500 } });
 
     const result = await data.json();
 
@@ -16,7 +16,7 @@ export const getContactData = async () => {
 };
 
 export async function getSliders() {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/commons/sliders`, { cache: 'force-cache', next: { revalidate: 500 } });
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/commons/sliders`, { cache: 'no-cache', next: { revalidate: 500 } });
 
     const result = await data.json();
 
@@ -24,7 +24,10 @@ export async function getSliders() {
 }
 
 export async function getStaticData() {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configs/static-sliders-data`, { cache: 'force-cache', next: { tags: ['configs/static-sliders-data'] } });
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configs/static-sliders-data`, {
+        cache: 'no-cache',
+        next: { tags: ['configs/static-sliders-data'], revalidate: 300 },
+    });
 
     const result = await data.json();
 
@@ -37,7 +40,7 @@ export async function getStaticData() {
 
 export async function getCategoriesTopic() {
     const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/commons/categories/outstanding`, {
-        cache: 'force-cache',
+        cache: 'no-cache',
         next: { tags: ['categories/outstanding_limit=20'], revalidate: 300 },
     });
 
@@ -47,7 +50,7 @@ export async function getCategoriesTopic() {
 }
 
 export async function getCategories() {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/categories?limit=20`, { cache: 'force-cache', next: { revalidate: 300, tags: ['categories?limit=20'] } });
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/categories?limit=20`, { cache: 'no-cache', next: { revalidate: 300, tags: ['categories?limit=20'] } });
 
     const result = await data.json();
 
@@ -55,7 +58,7 @@ export async function getCategories() {
 }
 
 export async function getFooterData() {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configs/footer-data`, { cache: 'force-cache', next: { tags: [Constant.FOOTER_DATA_KEY] } });
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configs/footer-data`, { cache: 'no-cache', next: { tags: [Constant.FOOTER_DATA_KEY], revalidate: 300 } });
 
     const result = await data.json();
 
@@ -95,7 +98,7 @@ export const getHomeData = async () => {
 };
 
 export const getTags = async () => {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/tags?limit=20`, { cache: 'force-cache', next: { tags: ['tags?limit=20'], revalidate: 300 } });
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/tags?limit=20`, { cache: 'no-cache', next: { tags: ['tags?limit=20'], revalidate: 300 } });
 
     const result = await data.json();
 

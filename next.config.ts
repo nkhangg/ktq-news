@@ -12,7 +12,6 @@ const nextConfig: NextConfig = {
     images: {
         unoptimized: false,
     },
-    // pageExtensions: ['page.tsx', 'page.ts'],
 };
 
 export default nextConfig;
