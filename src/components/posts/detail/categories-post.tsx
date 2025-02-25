@@ -10,7 +10,7 @@ export interface ICategoriesPostProps {
 
 async function getData(post: IPost) {
     const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/categories/outstanding/?limit=10&ignore=${post.category.id}`, {
-        cache: 'force-cache',
+        cache: 'no-cache',
         next: { tags: [`categories/outstanding_limit=10_ignore=${post.category.id}`], revalidate: 300 },
     });
 

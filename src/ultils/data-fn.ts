@@ -66,7 +66,7 @@ export async function getFooterData() {
 }
 
 export const getData = async (slug: IPost['slug']) => {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/posts/${slug}`);
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/posts/${slug}`, { cache: 'no-cache', next: { tags: [`posts/${slug}`], revalidate: 300 } });
 
     if (data.status != 200) {
         notFound();
@@ -82,7 +82,7 @@ export const getData = async (slug: IPost['slug']) => {
 };
 
 export const getHomeData = async () => {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/commons/home-data`);
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/commons/home-data`, { cache: 'no-cache', next: { revalidate: 300 } });
 
     if (data.status != 200) {
         notFound();
@@ -111,7 +111,7 @@ export const getTags = async () => {
 
 export const getMetadata = async (slug: IPost['slug']) => {
     try {
-        const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/posts/metadata/${slug}`);
+        const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/posts/metadata/${slug}`, { cache: 'no-cache', next: { revalidate: 300 } });
 
         const result = await data.json();
 
