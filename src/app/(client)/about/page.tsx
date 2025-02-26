@@ -19,7 +19,7 @@ export default async function About() {
     const staticData = await getStaticData();
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
             <Breadcrumb
                 data={[
                     {

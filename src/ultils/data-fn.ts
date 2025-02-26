@@ -98,7 +98,7 @@ export const getHomeData = async () => {
 };
 
 export const getTags = async () => {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/tags?limit=20`, { cache: 'no-cache', next: { tags: ['tags?limit=20'], revalidate: 300 } });
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/tags?limit=40`, { cache: 'no-cache', next: { tags: ['tags?limit=20'], revalidate: 300 } });
 
     const result = await data.json();
 

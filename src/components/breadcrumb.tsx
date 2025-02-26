@@ -8,7 +8,7 @@ export interface IBreadcrumbProps {
 export default function Breadcrumb({ data }: IBreadcrumbProps) {
     return (
         <Br>
-            <BreadcrumbList>
+            <BreadcrumbList className="w-full max-w-full text-wrap">
                 <BreadcrumbItem>
                     <BreadcrumbLink href={Routes.HOME}>Trang chủ</BreadcrumbLink>
                 </BreadcrumbItem>
@@ -19,9 +19,11 @@ export default function Breadcrumb({ data }: IBreadcrumbProps) {
                             <BreadcrumbSeparator />
                             <BreadcrumbItem>
                                 {item.link ? (
-                                    <BreadcrumbLink href={item.link}>{item.pageName}</BreadcrumbLink>
+                                    <BreadcrumbLink className="max-w-full line-clamp-2" href={item.link}>
+                                        {item.pageName}
+                                    </BreadcrumbLink>
                                 ) : (
-                                    <BreadcrumbPage className="max-w-full truncate line-clamp-1">{item.pageName}</BreadcrumbPage>
+                                    <BreadcrumbPage className="max-w-full line-clamp-2">{item.pageName}</BreadcrumbPage>
                                 )}
                             </BreadcrumbItem>
                         </Fragment>

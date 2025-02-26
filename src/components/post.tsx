@@ -49,15 +49,17 @@ export default function Post({ data }: IPostProps) {
 
                     <p className="line-clamp-2 text-sm">{data.preview_content}</p>
 
-                    <div className="flex items-center text-sm gap-3">
+                    <div className="flex md:items-center text-sm gap-3 flex-col md:flex-row">
                         <Link href={Routes.GENERATE_CATEGORY_URL(data.category)}>
                             <Button variant={'outline'} size={'sm'} className="rounded-full">
                                 {data.category.name}
                             </Button>
                         </Link>
 
-                        <span>{upperCaseFirst(moment(data.created_at || '').fromNow())}</span>
-                        <span>{generateTTR(data.ttr + '')}</span>
+                        <div className="flex items-center gap-3">
+                            <span>{upperCaseFirst(moment(data.created_at || '').fromNow())}</span>
+                            <span>{generateTTR(data.ttr + '')}</span>
+                        </div>
                     </div>
                 </div>
 
