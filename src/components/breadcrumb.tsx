@@ -18,7 +18,11 @@ export default function Breadcrumb({ data }: IBreadcrumbProps) {
                         <Fragment key={item.pageName}>
                             <BreadcrumbSeparator />
                             <BreadcrumbItem>
-                                {item.link ? <BreadcrumbLink href={item.link}>{item.pageName}</BreadcrumbLink> : <BreadcrumbPage>{item.pageName}</BreadcrumbPage>}
+                                {item.link ? (
+                                    <BreadcrumbLink href={item.link}>{item.pageName}</BreadcrumbLink>
+                                ) : (
+                                    <BreadcrumbPage className="max-w-full truncate line-clamp-1">{item.pageName}</BreadcrumbPage>
+                                )}
                             </BreadcrumbItem>
                         </Fragment>
                     );

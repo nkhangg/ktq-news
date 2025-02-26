@@ -18,7 +18,7 @@ export default class Routes {
     }
 
     public static GENERATE_POST_URL(post: IPost) {
-        return `${this.POSTS}/${post.slug}/${post.title.replaceAll(' ', '-')}`;
+        return `${this.POSTS}/${post.category.slug}/${post.slug}`;
     }
 
     public static GENERATE_ADMIN_POST_URL(post: IPost) {
