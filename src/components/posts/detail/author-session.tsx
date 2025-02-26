@@ -26,7 +26,7 @@ export default function AuthorSession(props: { data: IPost }) {
                 </Avatar>
 
                 <div className="">
-                    <span className="font-medium">{data.admin.fullname || ''}</span>
+                    <span className="font-medium">{data.admin.fullname || 'Admin'}</span>
 
                     <div className="flex items-center gap-[2px] text-sm">
                         <span>{moment(data.created_at).fromNow()}</span>

@@ -30,7 +30,7 @@ export default function Post({ data }: IPostProps) {
                     </Avatar>
 
                     <span className="font-medium text-sm flex items-center gap-1">
-                        <p>{data.admin.fullname}</p>
+                        <p>{data.admin.fullname || 'Admin'}</p>
 
                         <CircleCheck size={14} className="text-[#1b74e4]" />
                     </span>

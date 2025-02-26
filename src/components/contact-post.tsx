@@ -16,7 +16,7 @@ export default function ContactPost({ data }: IContactPostProps) {
         <div className="flex flex-col gap-2 py-2 border-b border-gray-200">
             <div className="text-[15px] flex items-center gap-1">
                 <span>Đăng bởi </span>
-                <b className="font-medium ml-[2px]">{data.admin.fullname}</b>
+                <b className="font-medium ml-[2px]">{data.admin.fullname || 'Admin'}</b>
                 <Dot size={10} />
                 <span>{generateTTR(data.ttr + '')}</span>
             </div>

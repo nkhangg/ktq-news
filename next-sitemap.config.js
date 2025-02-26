@@ -1,16 +1,13 @@
-// next-sitemap.config.js
 /** @type {import('next-sitemap').IConfig} */
 const config = {
-    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://ktqnews.com', // Change to your website's URL
-    generateRobotsTxt: true, // Optional: Generates robots.txt file
-    changefreq: 'daily', // How often your pages may change
-    priority: 0.8, // Default priority for URLs
-    sitemapSize: 5000, // Maximum entries per sitemap file
-    exclude: ['/admin/**'], // Exclude paths from the sitemap if needed
+    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://ktq-blogs.com', // Thay đổi thành URL của web mày
+    generateRobotsTxt: true, // Tạo file robots.txt
+    changefreq: 'daily', // Tần suất cập nhật trang
+    priority: 0.8, // Mức độ ưu tiên của URL
+    sitemapSize: 5000, // Số lượng URL tối đa trong mỗi file sitemap
     robotsTxtOptions: {
         policies: [
-            { userAgent: '*', allow: '/' },
-            { userAgent: '*', disallow: '/admin' },
+            { userAgent: '*', allow: '/' }, // Cho phép tất cả bot truy cập toàn bộ trang
         ],
     },
 };

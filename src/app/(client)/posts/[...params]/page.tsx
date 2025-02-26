@@ -46,7 +46,7 @@ export default async function DetailPost({ params }: IDetailPostProps) {
             </div>
             <div className="hidden md:block md:col-span-3 ml-5">
                 <div className="w-full flex items-center justify-center pb-5">
-                    <span className="font-medium text-sm">{data.admin.fullname}</span>
+                    <span className="font-medium text-sm">{data.admin.fullname || 'Admin'}</span>
                 </div>
                 <div className="h-[1px] w-full bg-[#e6e6e6]"></div>
 
