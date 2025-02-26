@@ -69,3 +69,17 @@
     color: inherit !important;
     background-color: inherit !important;
 }
+
+.text-image img {
+    border-radius: 8px;
+}
+
+.wmde-markdown p:has(> img) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wmde-markdown img {
+    border-radius: 8px;
+}

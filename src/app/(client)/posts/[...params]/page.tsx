@@ -14,12 +14,12 @@ export interface IDetailPostProps {
 }
 
 export async function generateMetadata({ params }) {
-    const [slug, title] = (await params).params;
+    const [category_slug, slug] = (await params).params;
 
     const data = await getMetadata(slug);
 
     return {
-        title: data && data?.title ? data.title + ` | ${process.env.LOGO_NAME}` : ` ${decodeURIComponent(title).replaceAll('-', ' ')} | ${process.env.LOGO_NAME}`,
+        title: data && data?.title ? data.title + ` | ${process.env.LOGO_NAME}` : `${process.env.LOGO_NAME}`,
         description: data && data?.preview_content ? data?.preview_content : Constant.DESCRIPTION,
     };
 }
