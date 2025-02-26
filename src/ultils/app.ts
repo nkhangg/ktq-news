@@ -42,7 +42,7 @@ export const handleClearFilterChange = () => {
 };
 
 export const generateCoppyLink = (data: IPost) => {
-    return `${window.location.origin}${Routes.POSTS}/${data.id}`;
+    return `${window.location.origin}${Routes.GENERATE_POST_URL(data)}`;
 };
 
 export const isValidUrl = (url: string) => {
