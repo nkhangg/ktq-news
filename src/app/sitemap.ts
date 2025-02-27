@@ -1,8 +1,11 @@
 import { sitemaps } from '@/ultils/data-fn';
 import Routes from '@/ultils/routes';
+import { MetadataRoute } from 'next';
 
-export default async function sitemap() {
-    const data: IPost[] = await sitemaps();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+    const data: IPost[] = await sitemaps({
+        next: { revalidate: 1800 }, // Cache trong 30 phút
+    });
 
     const domain = process.env.NEXT_PUBLIC_SITE_URL || '';
 
@@ -13,7 +16,7 @@ export default async function sitemap() {
             changeFrequency: 'daily',
             priority: 0.8,
         };
-    });
+    }) as MetadataRoute.Sitemap;
 
     return [
         {
