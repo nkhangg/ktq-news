@@ -121,3 +121,18 @@ export const getMetadata = async (slug: IPost['slug']) => {
         return null;
     }
 };
+
+export const sitemaps = async () => {
+    try {
+        const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/posts/sitemaps`, { cache: 'no-cache', next: { revalidate: 500 } });
+
+        const result = await data.json();
+
+        console.log({ result: result, url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/posts/sitemaps` });
+        return result?.data || [];
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};
