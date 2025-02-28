@@ -18,7 +18,8 @@
 /data/
 /out/
 
-/public/*
+/public/sitemap*.xml
+/public/robots.text
 
 # production
 /build
