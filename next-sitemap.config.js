@@ -26,7 +26,7 @@ const config = {
         const dynamicSitemaps = data.map((item) => {
             return {
                 loc: `${siteURL}/${item.category.slug}/${item.slug}`,
-                lastmod: new Date(item.updated_at),
+                lastmod: new Date(item.updated_at).toISOString(),
                 changefreq: 'daily',
                 priority: 0.8,
             };
@@ -35,19 +35,19 @@ const config = {
         const static = [
             {
                 loc: `${siteURL}/posts`,
-                lastmod: new Date(),
+                lastmod: new Date().toISOString(),
                 changefreq: 'daily',
                 priority: 0.7,
             },
             {
                 loc: `${siteURL}/contact`,
-                lastmod: new Date(),
+                lastmod: new Date().toISOString(),
                 changefreq: 'monthly',
                 priority: 0.5,
             },
             {
                 loc: `${siteURL}/about`,
-                lastmod: new Date(),
+                lastmod: new Date().toISOString(),
                 changefreq: 'monthly',
                 priority: 0.5,
             },
