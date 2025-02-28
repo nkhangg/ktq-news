@@ -4,6 +4,7 @@ const siteURL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ktq-blogs.com';
 const config = {
     siteUrl: siteURL,
     generateRobotsTxt: true,
+    generateIndexSitemap: true,
     sitemapSize: 5000,
     changefreq: 'daily',
     priority: 0.8,
