@@ -3,7 +3,7 @@ const siteURL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ktq-blogs.com';
 /** @type {import('next-sitemap').IConfig} */
 const config = {
     siteUrl: siteURL,
-    generateRobotsTxt: true,
+    generateRobotsTxt: false,
     generateIndexSitemap: true,
     sitemapSize: 5000,
     changefreq: 'daily',
