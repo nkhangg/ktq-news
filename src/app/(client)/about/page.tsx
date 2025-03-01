@@ -9,10 +9,14 @@ import { Rocket, Settings2, Sparkle } from 'lucide-react';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import BoxAboutSession from './box-about-session';
+import Routes from '@/ultils/routes';
 
 export const metadata: Metadata = {
     title: `Về chúng tôi | ${process.env.LOGO_NAME}`,
     description: Constant.DESCRIPTION,
+    alternates: {
+        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${Routes.ABOUT}`,
+    },
 };
 
 export default async function About() {

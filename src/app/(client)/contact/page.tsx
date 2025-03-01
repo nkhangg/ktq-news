@@ -5,12 +5,16 @@ import FormSend from '@/components/contact/form-send';
 import Loading from '@/components/loading';
 import Constant from '@/constants';
 import { getStaticData } from '@/ultils/data-fn';
+import Routes from '@/ultils/routes';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
     title: `Liên hệ | ${process.env.LOGO_NAME}`,
     description: Constant.DESCRIPTION,
+    alternates: {
+        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${Routes.CONTACT}`,
+    },
 };
 
 export default async function Contact() {

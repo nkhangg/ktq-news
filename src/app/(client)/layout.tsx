@@ -5,6 +5,9 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: `Trang chủ | ${process.env.LOGO_NAME}`,
     description: Constant.DESCRIPTION,
+    alternates: {
+        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}`,
+    },
 };
 
 export default function RootLayout({

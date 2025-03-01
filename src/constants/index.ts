@@ -21,7 +21,8 @@ export default class Constant {
         [this.CONTACTS_DATA_KEY]: Mail,
     };
 
-    public static DESCRIPTION = 'KTQ News Từ công nghệ, sức khỏe đến tài chính cá nhân. Chúng tôi có tất cả!';
+    public static DESCRIPTION =
+        '"ktq-blogs - Khám phá tri thức đa chiều! 📖💡 Từ triết học, tâm lý, khoa học đến công nghệ, lịch sử, và đời sống. Nơi tổng hợp kiến thức với góc nhìn hài hước nhưng sâu sắc, giúp bạn hiểu thế giới theo cách thú vị nhất!"';
 
     // Các config data
     public static initConfigsData = [

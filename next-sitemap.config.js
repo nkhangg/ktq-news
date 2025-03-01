@@ -52,6 +52,12 @@ const config = {
                 changefreq: 'monthly',
                 priority: 0.5,
             },
+            {
+                loc: `${siteURL}`,
+                lastmod: new Date().toISOString(),
+                changefreq: 'monthly',
+                priority: 0.5,
+            },
         ];
 
         return [...dynamicSitemaps, ...static];

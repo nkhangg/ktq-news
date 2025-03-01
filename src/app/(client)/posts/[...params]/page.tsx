@@ -21,6 +21,9 @@ export async function generateMetadata({ params }) {
     return {
         title: data && data?.title ? data.title + ` | ${process.env.LOGO_NAME}` : `${process.env.LOGO_NAME}`,
         description: data && data?.preview_content ? data?.preview_content : Constant.DESCRIPTION,
+        alternates: {
+            canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${Routes.GENERATE_POST_URL(data)}`,
+        },
     };
 }
 
