@@ -17,7 +17,7 @@ const formSchema = z.object({
     message: z.string().min(1, { message: 'Nội dung không được để trống' }),
 });
 
-export default function FormSend() {
+export default function FormSend({ prefixMessage, onSended }: { prefixMessage?: string; onSended?: () => void }) {
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -37,7 +37,10 @@ export default function FormSend() {
             setIsLoading(true);
             const { data } = await axios({
                 method: 'POST',
-                data: values,
+                data: {
+                    ...values,
+                    message: prefixMessage ? `${prefixMessage} ${values.message}` : values.message,
+                },
                 url: 'feedbacks',
             });
 
@@ -48,6 +51,10 @@ export default function FormSend() {
                 });
 
                 reset({ fullname: '', email: '', message: '' });
+
+                if (onSended) {
+                    onSended();
+                }
                 return;
             }
 
