@@ -9,7 +9,7 @@ import Logo from './logo';
 export default async function Footer() {
     const configs: IConfig[] = await getFooterData();
 
-    const footerData = (JSON.parse((Constant.getFooterData(configs)?.value as string) || '') as Record<string, string | []>[]) || [];
+    const footerData = (JSON.parse((Constant.getFooterData(configs)?.value as string) || '{}') as Record<string, string | []>[]) || [];
 
     const primaryEmail = (Constant.getPrimaryEmail(configs)?.value as string) || '';
 
