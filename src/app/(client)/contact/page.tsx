@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: `Liên hệ | ${process.env.LOGO_NAME}`,
     description: Constant.DESCRIPTION,
     alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${Routes.CONTACT}`,
+        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}${Routes.CONTACT}`,
     },
 };
 

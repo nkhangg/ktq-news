@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: `Về chúng tôi | ${process.env.LOGO_NAME}`,
     description: Constant.DESCRIPTION,
     alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${Routes.ABOUT}`,
+        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}${Routes.ABOUT}`,
     },
 };
 
