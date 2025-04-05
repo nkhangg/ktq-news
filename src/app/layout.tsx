@@ -1,8 +1,10 @@
-import { Toaster } from '@/components/ui/toaster';
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import Constant from '@/constants';
+import { Notifications } from '@mantine/notifications';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -16,7 +18,6 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
     title: `${process.env.LOGO_NAME}`,
-    description: Constant.DESCRIPTION,
 };
 
 export default function RootLayout({
@@ -34,11 +35,13 @@ export default function RootLayout({
                 <link rel="manifest" href="/favicon/site.webmanifest" />
                 <meta name="msapplication-TileColor" content="#da532c" />
                 <meta name="theme-color" content="#ffffff" />
+                <ColorSchemeScript />
             </head>
             <body suppressHydrationWarning={true} className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                {children}
-
-                <Toaster />
+                <MantineProvider forceColorScheme="light">
+                    {children}
+                    <Notifications />
+                </MantineProvider>
             </body>
         </html>
     );
